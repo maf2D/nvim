@@ -1,7 +1,22 @@
 return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    {
+      "nvim-telescope/telescope-ui-select.nvim",
+      config = function()
+        require("telescope").setup({
+          extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown()
+            }
+          }
+        })
+        require("telescope").load_extension("ui-select")
+      end,
+    }
+  },
   opts = {
     defaults = {
       previewer = false,
@@ -19,26 +34,33 @@ return {
     }
   },
   keys = {
-    { "<leader>pf", function() require("telescope.builtin").find_files() end, desc = "Find Files" },
-    { "<leader>pr", function() require("telescope.builtin").oldfiles() end, desc = "Recent Files" },
-    { "<leader>pb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
-    { "<leader>ps", function() require("telescope.builtin").live_grep() end, desc = "Live Grep" },
+    { "<leader>pf", function() require("telescope.builtin").find_files() end,  desc = "Find Files" },
+    { "<leader>pr", function() require("telescope.builtin").oldfiles() end,    desc = "Recent Files" },
+    { "<leader>pb", function() require("telescope.builtin").buffers() end,     desc = "Buffers" },
+    { "<leader>ps", function() require("telescope.builtin").live_grep() end,   desc = "Live Grep" },
     { "<leader>pc", function() require("telescope.builtin").grep_string() end, desc = "Grep Current Word" },
-    { "<leader>pg", function() require("telescope.builtin").git_status() end, desc = "Git Status" },
+    { "<leader>pg", function() require("telescope.builtin").git_status() end,  desc = "Git Status" },
     -- alternative:
     -- { "<leader>pg", function() require("telescope.builtin").git_files({ show_untracked = false }) end, desc = "Git Files" },
 
-    { "<leader>pws", function()
+    {
+      "<leader>pws",
+      function()
         local word = vim.fn.expand("<cword>")
         require("telescope.builtin").grep_string({ search = word })
-      end, desc = "Grep Word (cword)" },
+      end,
+      desc = "Grep Word (cword)"
+    },
 
-    { "<leader>pWs", function()
+    {
+      "<leader>pWs",
+      function()
         local word = vim.fn.expand("<cWORD>")
         require("telescope.builtin").grep_string({ search = word })
-      end, desc = "Grep WORD (cWORD)" },
+      end,
+      desc = "Grep WORD (cWORD)"
+    },
 
     { "<leader>vh", function() require("telescope.builtin").help_tags() end, desc = "Help Tags" }
   }
 }
-

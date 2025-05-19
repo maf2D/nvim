@@ -25,6 +25,12 @@ local snippets = {
     t({"", "};"})
   }),
 
+  s("cfn", {
+    t("("), i(1), t(") => {"),
+    t({"", "\t"}), i(0),
+    t({"", "}"})
+  }),
+
   s("ifwrap", {
     t("if ("), i(1, "condition"), t(") {\n  "),
     f(function(_, parent)
