@@ -34,7 +34,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "ts_ls",
-                "volar"
+                -- "volar"
             },
             handlers = {
                 function(server_name) -- default handler (optional)

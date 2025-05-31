@@ -53,13 +53,9 @@ return {
       ["@keyword.function.typescript"] = { fg = "pine", bold = true, italic = true },
       ["@type.builtin.typescript"] = { bold = true, italic = true, fg = "pine" },
       ["@function.method.call"] = { fg = "rose" },
-      -- ["FlashMatch"] = { bg = "NONE" },
-      -- ["FlashCurrent"] = { bg = "transparent" },
-      -- ["FlashBackdrop"] = { bg = "transparent" },
       ["FlashLabel"] = { bg = "#2A2234", fg = "#ffffff" },
       ["Search"] = { bg = "#2A2234", fg = "#ffffff" },
       ["CurSearch"] = { bg = "#2A2234", fg = "#ffffff" },
-      -- ["IncSearch"] = { bg = "#292233", fg = "#ffffff" },
     },
   },
 }
