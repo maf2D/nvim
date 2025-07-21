@@ -33,6 +33,7 @@ autocmd('BufEnter', {
   group = deckrowGroup,
   callback = function()
     vim.cmd.colorscheme('rose-pine-moon')
+    -- vim.cmd.colorscheme('intellij')
   end
 })
 
