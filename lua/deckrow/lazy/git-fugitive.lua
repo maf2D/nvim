@@ -37,13 +37,13 @@ return {
       end,
       mode = { "n" }
     },
-    {
-      "<leader>grs",
-      function()
-        vim.cmd("Git reset")
-      end,
-      mode = { "n" }
-    },
+    -- {
+    --   "<leader>gRS",
+    --   function()
+    --     vim.cmd("Git reset")
+    --   end,
+    --   mode = { "n" }
+    -- },
     {
       "<leader>gl",
       function()

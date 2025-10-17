@@ -28,6 +28,7 @@ return {
       SpellLocal = { fg = "#d8657b", underline = false, undercurl = false },
       SpellRare = { fg = "#d8657b", underline = false, undercurl = false },
       ["@keyword.typescript"] = { fg = "pine", bold = true, italic = true },
+      ["@keyword.repeat.typescript"] = { fg = "pine", bold = true, italic = true },
       ["@keyword.function.tsx"] = { fg = "pine", bold = true, italic = true },
       ["@keyword.modifier.typescript"] = { fg = "pine", bold = true, italic = true },
       ["@keyword.tsx"] = { fg = "pine", bold = true, italic = true },
