@@ -39,12 +39,39 @@ return {
     require('telescope').load_extension('ui-select')
   end,
   keys = {
-    { "<leader>pf", function() require("telescope.builtin").find_files() end,  desc = "Find Files" },
     { "<leader>pr", function() require("telescope.builtin").oldfiles() end,    desc = "Recent Files" },
     { "<leader>pb", function() require("telescope.builtin").buffers() end,     desc = "Buffers" },
     { "<leader>ps", function() require("telescope.builtin").live_grep() end,   desc = "Live Grep" },
     { "<leader>pc", function() require("telescope.builtin").grep_string() end, desc = "Grep Current Word" },
     { "<leader>pg", function() require("telescope.builtin").git_status() end,  desc = "Git Status" },
+    {
+      "<leader>pf",
+      function()
+        require("telescope.builtin").find_files({
+          find_command = {
+            "fd",
+            "--type", "f",
+            "--hidden",
+            "--no-ignore",
+            "--exclude", ".git",
+            "--exclude", "node_modules",
+            "--exclude", "dist",
+            "--exclude", "build",
+          }
+        })
+      end,
+      desc = "Find Files"
+    },
+    {
+      "<leader>pF",
+      function()
+        require("telescope.builtin").find_files({
+          prompt_title = "Find Directory",
+          find_command = { "fd", "--type", "d", "--hidden", "--exclude", ".git" }
+        })
+      end,
+      desc = "Git Status"
+    },
     -- alternative:
     -- { "<leader>pg", function() require("telescope.builtin").git_files({ show_untracked = false }) end, desc = "Git Files" },
 
