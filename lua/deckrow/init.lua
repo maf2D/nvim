@@ -22,7 +22,7 @@ autocmd('TextYankPost', {
 autocmd('ColorScheme', {
   group = deckrowGroup,
   pattern = '*',
-  callback = function ()
+  callback = function()
     vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
     vim.cmd('highlight NonText guibg=NONE ctermbg=NONE')
     vim.cmd('highlight EndOfBuffer guibg=NONE ctermbg=NONE')
@@ -47,11 +47,20 @@ autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>ch', function() vim.diagnostic.open_float() end, opts)
     vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set('n', '<C-k>', ':cprevious<CR>', { silent = true })
-    vim.keymap.set('n', '<C-j>', ':cnext<CR>', { silent = true })
     vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format() end, opts)
     vim.keymap.set('n', '<leader>crn', function() vim.lsp.buf.rename() end, opts)
     -- vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+  end
+})
+
+-- buffer-local quickfix navigation (overrides harpoon <C-k>/<C-j> in quickfix window)
+autocmd('FileType', {
+  pattern = 'qf',
+  callback = function()
+    vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz', { buffer = true })
+    vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz', { buffer = true })
+    vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { buffer = true })
+    vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { buffer = true })
   end
 })
 
