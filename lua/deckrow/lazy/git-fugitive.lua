@@ -1,16 +1,21 @@
 local function open_git_window(git_cmd)
-  local ft = vim.api.nvim_buf_get_option(0, "filetype")
-  local bufname = vim.api.nvim_buf_get_name(0)
+  -- close any existing fugitive/git windows
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+    local bufname = vim.api.nvim_buf_get_name(buf)
 
-  local is_fugitive = (ft == "fugitive" or ft == "git" or bufname:match("^fugitive://") or bufname:match("^git://"))
-  if is_fugitive then
-    vim.cmd("close")
-  else
-    vim.cmd("vertical " .. git_cmd)
-    local total_width = vim.o.columns
-    local git_width = math.floor(total_width * 0.4)
-    vim.cmd("vertical resize " .. git_width)
+    local is_fugitive = (ft == "fugitive" or ft == "git" or bufname:match("^fugitive://") or bufname:match("^git://"))
+    if is_fugitive then
+      vim.api.nvim_win_close(win, false)
+    end
   end
+
+  -- open new git window
+  vim.cmd("vertical " .. git_cmd)
+  local total_width = vim.o.columns
+  local git_width = math.floor(total_width * 0.4)
+  vim.cmd("vertical resize " .. git_width)
 end
 
 return {
