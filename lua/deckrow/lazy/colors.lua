@@ -16,9 +16,14 @@ return {
 
     highlight_groups = {
       Normal = { bg = "none" },
-      -- NormalFloat = { bg = "none" },
+      NormalFloat = { bg = "none" },
       NormalNC = { bg = "none" },
       EndOfBuffer = { bg = "none" },
+      FloatBorder = { bg = "none", fg = "muted" },
+      TelescopeBorder = { bg = "none", fg = "muted" },
+      TelescopePromptBorder = { bg = "none", fg = "muted" },
+      TelescopeResultsBorder = { bg = "none", fg = "muted" },
+      TelescopePreviewBorder = { bg = "none", fg = "muted" },
       DiagnosticUnderlineError = { fg = "#d8657b", underline = false, undercurl = true },
       DiagnosticUnderlineHint = { fg = "#d8657b", underline = false, undercurl = true },
       DiagnosticUnderlineInfo = { fg = "#d8657b", underline = false, undercurl = true },
