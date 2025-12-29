@@ -14,7 +14,7 @@ local function open_git_window(git_cmd)
   -- open new git window
   vim.cmd("vertical " .. git_cmd)
   local total_width = vim.o.columns
-  local git_width = math.floor(total_width * 0.4)
+  local git_width = math.floor(total_width * 0.5)
   vim.cmd("vertical resize " .. git_width)
 end
 

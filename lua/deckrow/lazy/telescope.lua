@@ -18,8 +18,13 @@ return {
       },
     },
     defaults = {
+      layout_strategy = "vertical",
       previewer = false,
       path_display = { "relative" },
+
+      layout_config = {
+        preview_cutoff = 0
+      },
 
       mappings = {
         i = {
@@ -44,6 +49,7 @@ return {
     { "<leader>ps", function() require("telescope.builtin").live_grep() end,   desc = "Live Grep" },
     { "<leader>pc", function() require("telescope.builtin").grep_string() end, desc = "Grep Current Word" },
     { "<leader>pg", function() require("telescope.builtin").git_status() end,  desc = "Git Status" },
+    { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
     {
       "<leader>pf",
       function()
@@ -93,6 +99,7 @@ return {
       desc = "Grep WORD (cWORD)"
     },
 
-    { "<leader>vh", function() require("telescope.builtin").help_tags() end, desc = "Help Tags" }
+    { "<leader>vh", function() require("telescope.builtin").help_tags() end, desc = "Help Tags" },
+    { "<leader>pl", function() require("telescope.builtin").lsp_document_symbols() end, desc = "LSP Document Symbols" },
   }
 }
