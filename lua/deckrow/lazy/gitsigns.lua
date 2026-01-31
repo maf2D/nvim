@@ -19,28 +19,10 @@ return {
     },
     on_attach = function(buffer)
       local gs = package.loaded.gitsigns
-
-      local function map(mode, l, r, desc)
+      local map = function(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
 
-      -- stylua: ignore start
-      map("n", "]g", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "]c", bang = true })
-        else
-          gs.nav_hunk("next")
-        end
-      end, "Next Hunk")
-      map("n", "[g", function()
-        if vim.wo.diff then
-          vim.cmd.normal({ "[c", bang = true })
-        else
-          gs.nav_hunk("prev")
-        end
-      end, "Prev Hunk")
-      map("n", "]G", function() gs.nav_hunk("last") end, "Last Hunk")
-      map("n", "[G", function() gs.nav_hunk("first") end, "First Hunk")
       map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map("n", "<leader>gs", gs.stage_buffer, "Stage Buffer")
@@ -52,6 +34,14 @@ return {
       map("n", "<leader>gd", gs.diffthis, "Diff This")
       map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      map("n", "]G", function() gs.nav_hunk("last") end, "Last Hunk")
+      map("n", "[G", function() gs.nav_hunk("first") end, "First Hunk")
+      map("n", "]g", function()
+        return vim.wo.diff and vim.cmd.normal({ "]c", bang = true }) or gs.nav_hunk("next")
+      end, "Next Hunk")
+      map("n", "[g", function()
+        return vim.wo.diff and vim.cmd.normal({ "[c", bang = true }) or gs.nav_hunk("prev")
+      end, "Prev Hunk")
     end,
   },
 }
