@@ -29,7 +29,9 @@ function TelescopeConfig:get_opts()
       path_display = { "relative" },
       layout_config = {
         preview_cutoff = 0,
-        preview_height = 0.6,
+        vertical = {
+          preview_height = 0.6,
+        },
       },
       mappings = {
         i = {
