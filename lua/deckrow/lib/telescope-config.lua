@@ -54,6 +54,8 @@ function TelescopeConfig:get_keys()
     { "<leader>pc", function() self:grep_string() end, desc = "Grep Current Word" },
     { "<leader>pg", function() self:git_status() end, desc = "Git Status" },
     { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
+    { "<leader>gh", function() self:git_commits() end, desc = "Git Commits" },
+    { "<leader>gH", function() self:git_bcommits() end, desc = "Git Buffer Commits" },
     { "<leader>pf", function() self:find_files() end, desc = "Find Files" },
     { "<leader>pF", function() self:find_directories() end, desc = "Find Directory" },
     { "<leader>pws", function() self:grep_cword() end, desc = "Grep Word (cword)" },
@@ -81,6 +83,14 @@ end
 
 function TelescopeConfig:git_status()
   require("telescope.builtin").git_status()
+end
+
+function TelescopeConfig:git_commits()
+  require("telescope.builtin").git_commits()
+end
+
+function TelescopeConfig:git_bcommits()
+  require("telescope.builtin").git_bcommits()
 end
 
 function TelescopeConfig:find_files()
