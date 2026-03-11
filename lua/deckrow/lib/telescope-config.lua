@@ -40,6 +40,12 @@ function TelescopeConfig:get_opts()
           ["<Tab>"] = function(prompt_bufnr)
             actions.select_default(prompt_bufnr)
           end,
+          ["<M-BS>"] = function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>', true, false, true), 'i', false)
+          end,
+          ["<C-d>"] = function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Del>', true, false, true), 'i', false)
+          end,
         },
       }
     }

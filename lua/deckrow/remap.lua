@@ -27,6 +27,9 @@ vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d")
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-d>', '<Del>', { noremap = true, silent = true })
 
 vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-h>", "<Left>", { noremap = true, silent = true })
@@ -44,3 +47,7 @@ vim.keymap.set("n", "<leader><leader>", function()
   vim.cmd("so")
 end)
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { silent = true })
+
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
