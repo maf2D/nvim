@@ -25,7 +25,6 @@ function TelescopeConfig:get_opts()
     },
     defaults = {
       layout_strategy = "vertical",
-      previewer = false,
       path_display = { "relative" },
       layout_config = {
         preview_cutoff = 0,
@@ -43,9 +42,8 @@ function TelescopeConfig:get_opts()
           ["<M-BS>"] = function()
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>', true, false, true), 'i', false)
           end,
-          ["<C-d>"] = function()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Del>', true, false, true), 'i', false)
-          end,
+          ["<C-u>"] = actions.preview_scrolling_up,
+          ["<C-d>"] = actions.preview_scrolling_down,
         },
       }
     }
