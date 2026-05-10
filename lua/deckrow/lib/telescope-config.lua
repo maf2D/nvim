@@ -90,7 +90,36 @@ function TelescopeConfig:git_status()
 end
 
 function TelescopeConfig:git_commits()
-  require("telescope.builtin").git_commits()
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  require("telescope.builtin").git_commits({
+    attach_mappings = function(_, map)
+      map("i", "<C-r>", function(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        local hash = selection.value
+        local result = vim.fn.system("git revert " .. hash .. " --no-edit")
+        if vim.v.shell_error ~= 0 then
+          vim.notify("Revert failed:\n" .. result, vim.log.levels.ERROR)
+        else
+          vim.notify("Reverted commit: " .. hash, vim.log.levels.INFO)
+        end
+      end)
+      map("i", "<C-s>", function(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        local hash = selection.value
+        local result = vim.fn.system("git reset --soft " .. hash)
+        if vim.v.shell_error ~= 0 then
+          vim.notify("Soft reset failed:\n" .. result, vim.log.levels.ERROR)
+        else
+          vim.notify("Soft reset to: " .. hash .. " (changes are staged)", vim.log.levels.INFO)
+        end
+      end)
+      return true
+    end,
+  })
 end
 
 function TelescopeConfig:git_bcommits()
